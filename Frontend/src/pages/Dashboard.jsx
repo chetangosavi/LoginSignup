@@ -1,11 +1,14 @@
+import Navbar from "../components/Navbar";
+
 const Dashboard = () => {
   return (
-    <div className="h-screen flex items-center justify-center">
-        <div className="font-bold text-2xl ">
-           Welcome to Dashboard!
-        </div>
-    </div>
-  )
-}
+    <>
+    <Navbar/>
+      <div className="h-screen flex items-center justify-center">
+        <div className="font-bold text-2xl ">Welcome to Dashboard!</div>
+      </div>
+    </>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
