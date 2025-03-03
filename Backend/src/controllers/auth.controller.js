@@ -48,6 +48,13 @@ export const login = async (req,res) => {
     }
 }
 
-export const me = (req,res)=>{
 
+export const me = async (req,res)=>{
+try {
+    const user = await User.findOne({_id:req.user.userId})
+    console.log({user})
+    return Response(res,200,"User Fetched Successfully",{user})
+} catch (error) {
+    return Response(res,500,error.message);
+}
 }

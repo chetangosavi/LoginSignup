@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export const authMiddleware = async (req,res,next)=>{
     try {
-        const token = req.headers.authorization.split('')[1];
+        const token = req.headers.authorization.split(' ')[1];
         if(!token){
             Response(resizeBy,400,"Unauthorized")
         }
