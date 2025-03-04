@@ -1,14 +1,19 @@
+import { useState } from "react";
+import Information from "../components/Information";
 import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 const Dashboard = () => {
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
-    <Navbar/>
-      <div className="h-screen flex items-center justify-center">
-        <div className="font-bold text-2xl ">Welcome to Dashboard!</div>
-      </div>
+      <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+      <Information />
     </>
   );
 };
 
 export default Dashboard;
+
