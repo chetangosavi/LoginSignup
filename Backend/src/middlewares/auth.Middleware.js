@@ -19,8 +19,7 @@ export const authMiddleware = async (req,res,next)=>{
 // isAdmin
 export const isAdmin = async (req,res,next)=>{
     try {
-        let userId = req.user.userId;
-
+        let userId = req.user.id;
         const user = await User.findOne({_id:userId})
         if(user.role !=='admin'){
             return Response(res,400,"Unauthorized")
@@ -35,7 +34,7 @@ export const isAdmin = async (req,res,next)=>{
 
 export const isUser = async (req,res,next) => {
     try {
-        let userId =  req.user.userId;
+        let userId =  req.user.id;
         const user = await User.findById({_id : userId})
         
         if(user.role !== 'user'){

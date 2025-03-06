@@ -13,6 +13,10 @@ const ProjectSchema = new mongoose.Schema(
       enum: ["Pending", "In Progress", "Completed", "On Hold"],
       default: "Pending",
     },
+    members:[{
+      type:mongoose.Schema.type.ObjectId,
+      ref:"User",
+    }]
   },
   { timestamps: true }
 );
