@@ -35,13 +35,13 @@ export const login = async (req,res) => {
             return Response(res,400,"User not found!")
         }
 
-        const isPassword = bcrypt.compare(password,user.password)
+        const isPasswordValid = await bcrypt.compare(password,user.password)
 
-        if(!isPassword){
+        if(!isPasswordValid){
             return Response(res,400,"Invalid Password!")
         }
 
-        const token = jwt.sign({userId: user._id},process.env.JWT_SECRET,{expiresIn : '5h'})
+        const token = jwt.sign({id: user._id},process.env.JWT_SECRET,{expiresIn : '5h'})
         return Response(res,200,"User Logged In Successfully",{token,user})
     } catch (error) {
         return Response(res,500,error.message)

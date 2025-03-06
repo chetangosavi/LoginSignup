@@ -11,6 +11,7 @@ import {
 } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Modal from "./ui/Model";
+import axios from "axios";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [modalOpen, setModalOpen] = useState(false); // ✅ Fix: Use boolean
@@ -90,7 +91,9 @@ const CreateUserForm = () => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Create Member</h2>
-      <input type="text" placeholder="Enter name" className="border p-2 w-full rounded" />
+      <input type="text" placeholder="Enter Name" className="border p-2 w-full rounded" />
+      <input type="email" placeholder="Enter Email" className="border p-2 w-full rounded mt-3" />
+      <input type="password" placeholder="Enter Password" className="border p-2 w-full rounded mt-3" />
       <button className="bg-blue-500 text-white p-2 mt-3 rounded w-full">Submit</button>
     </div>
   );
@@ -98,12 +101,45 @@ const CreateUserForm = () => {
 
 // Create Project Form
 const CreateProjectForm = () => {
+  const [formData , setFormData] = useState({name:'',description:''})
+
+
+  const handleOnChange = (e)=>{
+    setFormData({...formData,[e.target.name]:e.target.value})
+  }
+
+  const handleOnSubmit = async (e)=>{
+    e.preventDefault();
+
+    const token = localStorage.getItem("token")
+    if(!token){
+      console.log("Token not present")
+      return;
+    }
+
+      try {
+          const response =  await axios.post('http://localhost:8000/api/projects/create',{name:formData.name,description:formData.description},{
+            headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, 
+          },})
+
+          console.log(response)
+          alert(response.data.message)
+          setFormData({ name: "", description: "" })
+      } catch (error) {
+          console.error(error.message)
+      }
+    }
+
   return (
     <div>
+      <form onSubmit={handleOnSubmit}>
       <h2 className="text-xl font-bold mb-4">Create Project</h2>
-      <input type="text" placeholder="Enter project name" className="border p-2 w-full rounded" />
-      <input type="text" placeholder="Enter project description" className="border p-2 w-full rounded mt-3" />
-      <button className="bg-green-500 text-white p-2 mt-3 rounded w-full">Submit</button>
+      <input type="text" name="name" placeholder="Enter project name" className="border p-2 w-full rounded"  onChange={handleOnChange}/>
+      <input type="text" name="description" placeholder="Enter project description" className="border p-2 w-full rounded mt-3" onChange={handleOnChange}/>
+      <button type="submit" className="bg-green-500 text-white p-2 mt-3 rounded w-full" >Submit</button>
+      </form>
     </div>
   );
 };

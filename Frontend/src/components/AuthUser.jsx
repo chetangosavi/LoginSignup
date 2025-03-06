@@ -31,7 +31,7 @@ const AuthUser = () => {
           password: formData.password,
         });
 
-        login(response.data.token);
+        login(response.data.data.token);
         alert(response.data.message);
         navigate("/dashboard");
       } else {

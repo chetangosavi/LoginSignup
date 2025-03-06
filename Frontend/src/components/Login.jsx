@@ -28,7 +28,7 @@ const AuthUser = () => {
           email: formData.email,
           password: formData.password,
         });
-
+        console.log(response.data)
         localStorage.setItem("token", response.data.token);
         alert(response.data.message);
         navigate("/dashboard");

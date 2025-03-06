@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema(
   {
-    projectName: { type: String, required: true, trim: true },
-    projectDescription: { type: String, trim: true },
+    name: { type: String, required: true, trim: true },
+    description: { type: String, trim: true },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -13,7 +13,6 @@ const ProjectSchema = new mongoose.Schema(
       enum: ["Pending", "In Progress", "Completed", "On Hold"],
       default: "Pending",
     },
-    createdAt: { type: Date, required: true },
   },
   { timestamps: true }
 );
