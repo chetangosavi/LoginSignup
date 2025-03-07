@@ -14,7 +14,7 @@ const ProjectSchema = new mongoose.Schema(
       default: "Pending",
     },
     members:[{
-      type:mongoose.Schema.type.ObjectId,
+      type:mongoose.Schema.Types.ObjectId,
       ref:"User",
     }]
   },

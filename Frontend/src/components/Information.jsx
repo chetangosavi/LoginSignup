@@ -7,7 +7,7 @@ import {
 const Information = () => {
   return (
     <>
-      <div className="w-full min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 ">
+      <div className="w-full h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
         <h1 className="font-bold text-7xl bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text drop-shadow-lg">
           Welcome to Taskly
         </h1>

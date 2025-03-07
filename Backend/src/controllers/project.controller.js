@@ -24,3 +24,17 @@ export const getProject = async (req,res) => {
         return Response(res,500,error.message)
     }
 }
+
+export const deleteProject = async (req,res)=>{
+    try {
+        const project_id = req.params.id;
+        const deletedProject = await Project.findByIdAndDelete(project_id)
+
+        if(!deletedProject){
+           return Response(res,400,"Project not found!")
+        }
+        return Response(res,200,"Project Deleted Successfully",deleteProject)
+    } catch (error) {
+        Response(res,500,{error:error.message})
+    }
+}

@@ -14,7 +14,7 @@ import Modal from "./ui/Model";
 import axios from "axios";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const [modalOpen, setModalOpen] = useState(false); // ✅ Fix: Use boolean
+  const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
 
   const openModal = (type) => {
@@ -56,7 +56,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       {/* Modal */}
       <Modal open={modalOpen} setOpen={setModalOpen}>
         {modalType === "create-member" && <CreateUserForm />}
-        {modalType === "create-project" && <CreateProjectForm />}
+        {modalType === "create-project" && <CreateProjectForm setModalOpen={setModalOpen}/>}
       </Modal>
     </>
   );
@@ -100,7 +100,7 @@ const CreateUserForm = () => {
 };
 
 // Create Project Form
-const CreateProjectForm = () => {
+const CreateProjectForm = ({setModalOpen}) => {
   const [formData , setFormData] = useState({name:'',description:''})
 
 
@@ -127,6 +127,7 @@ const CreateProjectForm = () => {
           console.log(response)
           alert(response.data.message)
           setFormData({ name: "", description: "" })
+          setModalOpen(false)
       } catch (error) {
           console.error(error.message)
       }
