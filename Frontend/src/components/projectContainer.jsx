@@ -1,10 +1,20 @@
 /* eslint-disable react/prop-types */
+import  axios  from "axios";
 import { TiDelete } from "react-icons/ti";
 
 const ProjectContainer = ({ id,name, description, status }) => {
 
-  const onDelete = ()=> {
-
+  const onDelete = async (id)=> {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await axios.delete(`http://localhost:8000/api/projects/delete/${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      alert(response.data.message)
+    } catch (error) {
+      console.error(error)
+    }
   }
   return (
     <div>
@@ -17,7 +27,7 @@ const ProjectContainer = ({ id,name, description, status }) => {
           onClick={() => onDelete(id)}
           className="absolute top-2 right-2 text-red-500 hover:text-red-700 transition"
         >
-          <TiDelete size={24} />
+          <TiDelete size={24} onClick={onDelete}/>
         </button>
       </div>
     </div>

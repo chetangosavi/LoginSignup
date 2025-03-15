@@ -14,8 +14,16 @@ function App() {
  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
-    <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
-    <Sidebar isOpen={sidebarOpen} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+    {
+      isAuthenticated &&
+      (
+        <>
+        <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+        <Sidebar isOpen={sidebarOpen} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+        </>
+      )
+      
+    }
     <div>
       <Routes>
         <Route path="/" element={isAuthenticated ? <Dashboard /> : <Home />} />

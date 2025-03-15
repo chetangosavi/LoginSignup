@@ -25,16 +25,19 @@ export const getProject = async (req,res) => {
     }
 }
 
-export const deleteProject = async (req,res)=>{
+export const deleteProject = async (req, res) => {
     try {
-        const project_id = req.params.id;
-        const deletedProject = await Project.findByIdAndDelete(project_id)
+        const { id } = req.params;
+        console.log("Deleting project with ID:", id);
 
-        if(!deletedProject){
-           return Response(res,400,"Project not found!")
+        const deletedProject = await Project.findByIdAndDelete(id);
+
+        if (!deletedProject) {
+            return Response(res, 400, "Project not found!");
         }
-        return Response(res,200,"Project Deleted Successfully",deleteProject)
+
+        return Response(res, 200, "Project Deleted Successfully", deletedProject);
     } catch (error) {
-        Response(res,500,{error:error.message})
+        return Response(res, 500, error.message);  
     }
-}
+};

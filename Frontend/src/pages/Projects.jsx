@@ -44,6 +44,7 @@ const Projects = () => {
           {projects.map((project) => (
             <ProjectContainer
               key={project._id}
+              id={project._id}
               name={project.name}
               description={project.description}
               status={project.status}

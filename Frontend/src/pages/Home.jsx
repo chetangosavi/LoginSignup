@@ -1,12 +1,11 @@
-import AuthUser from "../components/AuthUser"
-
+import AuthUser from "../components/AuthUser";
 
 const Home = () => {
   return (
     <div>
-        <AuthUser/>
+      <AuthUser />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

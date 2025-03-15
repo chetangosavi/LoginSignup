@@ -5,7 +5,6 @@ import {
   MdDashboard,
   MdWork,
   MdGroup,
-  MdSettings,
   MdPersonAdd,
   MdAddCircle,
 } from "react-icons/md";
@@ -44,8 +43,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <ul className="mt-4 space-y-2">
           <SidebarLink to="/dashboard" icon={<MdDashboard />} label="Dashboard" isOpen={isOpen} />
           <SidebarLink to="/projects" icon={<MdWork />} label="Projects" isOpen={isOpen} />
-          <SidebarLink to="/teams" icon={<MdGroup />} label="Members" isOpen={isOpen} />
-          <SidebarLink to="/settings" icon={<MdSettings />} label="Settings" isOpen={isOpen} />
+          <SidebarLink to="/members" icon={<MdGroup />} label="Members" isOpen={isOpen} />
 
           {/* Open Modal Instead of Navigating */}
           <SidebarButton onClick={() => openModal("create-member")} icon={<MdPersonAdd />} label="Create Member" isOpen={isOpen} />
